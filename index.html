@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Share API</title>
+    <style>
+body{
+    margin: 0;
+    background: lightblue;
+    font-family: system-ui;
+    color: rebeccapurple;
+    padding: 20px;
+}
+img{
+    width: 100%;
+}
+main{
+    max-width: 320px;
+    margin: 20px auto;
+    border: 5px dashed lightseagreen;
+    height: calc(100vh-80px);
+    border-radius: 10px;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 30px lightslategray;
+}
+button{
+    background: lightcoral;
+    padding: 10px 20px 12px;
+    color: white;
+    border-radius: 30px;
+    width: 100%;
+    border: none;
+    font-size: 20px;
+    text-transform: uppercase;
+    -webkit-appearance: none;
+    font-weight: bold;
+    outline: 0;
+    cursor: 0;
+    box-shadow: inset 0px -2px 0 2 px black;
+    }
+    button:active{
+        transform: scale(.9);
+    }
+
+
+    </style>
+</head>
+<body>
+    <main>
+        <section>
+            <img src="gdg1.jpg" alt="">
+        </section>
+        <h4><em>hoy es un dia para compartir conocimiento sobre web share..</em></h4>
+        <button id="button">Compartir</button>
+    </main>
+
+    <script>
+        const $button =document.querySelector('#button')
+        if('share' in navigator){
+        $button.addEventListener('click',share)
+        function share(){
+            navigator.share({
+             title: 'probando Share API',
+             text:'Suscribete a youtube.com/LeonidasEsteban',
+             url:'./gdg1.jpg',
+         })
+         .then(()=>{
+             alert('hemos logrado compartir')
+         })
+         .catch(()=>{
+             alert('no se pudo compartir, prueba usando https en un navegador web')
+         })
+
+        }
+        }else{
+            alert('no esta disponible el api de navigador web share')
+        }
+         
+    </script>
+    
+</body>
+</html>
